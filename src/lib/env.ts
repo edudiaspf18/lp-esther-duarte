@@ -4,11 +4,11 @@ export const SITE_URL =
 
 // WhatsApp oficial (somente dígitos, com DDI)
 export const WHATSAPP_NUMBER =
-  process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "5500000000000"; // TODO (cliente): número real da Esther
+  process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "5562993526881";
 
 export const INSTAGRAM_URL =
   process.env.NEXT_PUBLIC_INSTAGRAM_URL ??
-  "https://www.instagram.com/estherduartenutri/";
+  "https://www.instagram.com/estherduarte_nutri/";
 
 /** @ exibido, derivado da URL do perfil */
 export const INSTAGRAM_HANDLE =

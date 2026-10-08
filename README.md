@@ -72,7 +72,7 @@ src/
 
 ## Conteúdo pendente antes de publicar
 
-- Número real do WhatsApp, Instagram e domínio (`.env` e `src/lib/env.ts`).
+- Confirmar o domínio final (`NEXT_PUBLIC_SITE_URL` em `.env` e `src/lib/env.ts`).
 - Confirmar os textos da seção "Sobre" (`ABOUT` em `src/data/content.ts`) e o local da avaliação física presencial em Anápolis-GO.
 - Depoimentos reais autorizados em `TESTIMONIALS` (a seção fica oculta enquanto vazio).
 - IDs do GA4 e do Meta Pixel.

@@ -67,6 +67,6 @@ Por fim, em *Variables* crie `DEPLOY_ENABLED` = `true`. Enquanto ela não existi
 
 ## Antes de publicar
 
-- Trocar o WhatsApp de exemplo (`NEXT_PUBLIC_WHATSAPP_NUMBER`) pelo número real da Esther e confirmar o Instagram e o domínio.
+- Confirmar o domínio final (`NEXT_PUBLIC_SITE_URL`).
 - Confirmar os textos da seção "Sobre" (`ABOUT` em `src/data/content.ts`) e o local da avaliação física em Anápolis-GO.
 - Informar `NEXT_PUBLIC_GA_ID` e `NEXT_PUBLIC_META_PIXEL_ID`, se for medir.
