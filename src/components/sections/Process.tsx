@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import consultaPhoto from "../../../public/images/consulta-esther.webp";
+
 import { AnimatedJourney } from "@/components/motion/AnimatedJourney";
 import { Reveal } from "@/components/motion/Reveal";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -16,9 +18,10 @@ export function Process() {
           <figure className="mt-8 max-w-sm">
             <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-gold/30 bg-primary">
               <Image
-                src="/images/consulta-esther.webp"
+                src={consultaPhoto}
                 alt="Esther Duarte, nutricionista, em pé, ao ar livre"
                 fill
+                placeholder="blur"
                 sizes="(min-width: 768px) 384px, 90vw"
                 className="object-cover object-[50%_20%]"
               />

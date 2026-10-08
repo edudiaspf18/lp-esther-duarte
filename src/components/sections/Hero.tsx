@@ -1,4 +1,6 @@
 import Image from "next/image";
+
+import heroPhoto from "../../../public/images/hero-esther.webp";
 import { ArrowDown, MapPin, Video } from "lucide-react";
 
 import { PortraitFrame } from "@/components/motion/PortraitFrame";
@@ -76,9 +78,10 @@ export function Hero() {
           <PortraitFrame>
             <figure className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-gold/30 bg-primary">
               <Image
-                src="/images/hero-esther.webp"
+                src={heroPhoto}
                 alt="Esther Duarte, nutricionista, de jaleco branco, sorrindo"
                 fill
+                placeholder="blur"
                 priority
                 fetchPriority="high"
                 sizes="(min-width: 768px) 448px, 90vw"

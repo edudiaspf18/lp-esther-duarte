@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import sobrePhoto from "../../../public/images/sobre-esther.webp";
+
 import { Reveal } from "@/components/motion/Reveal";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { ABOUT, WHATSAPP_GENERIC_MESSAGE } from "@/data/content";
@@ -13,9 +15,10 @@ export function About() {
         <Reveal className="md:col-span-5">
           <figure className="relative mx-auto aspect-[4/5] max-w-sm overflow-hidden rounded-[2rem] border border-gold/30 bg-primary md:max-w-none">
             <Image
-              src="/images/sobre-esther.webp"
+              src={sobrePhoto}
               alt="Esther Duarte, nutricionista, sorrindo, em retrato de cintura para cima"
               fill
+              placeholder="blur"
               sizes="(min-width: 768px) 38vw, 90vw"
               className="object-cover object-[50%_25%]"
             />
