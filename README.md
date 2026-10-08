@@ -46,6 +46,7 @@ Outros scripts:
 | `npm run start` | serve o build |
 | `npm run lint` | ESLint |
 | `npx next typegen && npx tsc --noEmit` | checagem de tipos (typegen gera `LayoutProps`) |
+| `npm run previa` | regenera as capturas de `docs/preview/` (precisa de `npm run build` antes e do Chromium: `npx playwright install chromium`) |
 
 ## Variáveis de ambiente
 
