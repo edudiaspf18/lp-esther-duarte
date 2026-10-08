@@ -21,14 +21,14 @@ export function MobileMenu() {
         <Menu className="size-5" aria-hidden="true" />
       </SheetTrigger>
       <SheetContent side="right" className="bg-background p-8">
-        <SheetTitle className="font-heading text-2xl tracking-tight">Menu</SheetTitle>
+        <SheetTitle className="font-heading text-2xl font-semibold tracking-tight">Menu</SheetTitle>
         <nav aria-label="Principal" className="mt-6 flex flex-col">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="border-b border-border py-4 font-heading text-2xl transition-all duration-200 hover:text-gold-ink focus-visible:ring-2 focus-visible:ring-ring"
+              className="border-b border-border py-4 font-heading text-xl font-medium tracking-tight transition-all duration-200 hover:text-gold-ink focus-visible:ring-2 focus-visible:ring-ring"
             >
               {link.label}
             </a>
@@ -38,7 +38,7 @@ export function MobileMenu() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setOpen(false)}
-            className="flex items-center gap-3 border-b border-border py-4 font-heading text-2xl transition-all duration-200 hover:text-gold-ink focus-visible:ring-2 focus-visible:ring-ring"
+            className="flex items-center gap-3 border-b border-border py-4 font-heading text-xl font-medium tracking-tight transition-all duration-200 hover:text-gold-ink focus-visible:ring-2 focus-visible:ring-ring"
           >
             <InstagramIcon className="size-6" />
             Instagram

@@ -1,5 +1,6 @@
 import { BadgeCheck, CalendarClock, MapPin, MessageCircle, Ruler, Video } from "lucide-react";
 
+import { FactsTrack } from "@/components/motion/FactsTrack";
 import { FACTS, type Fact, type FactIcon } from "@/data/content";
 
 const ICONS: Record<FactIcon, typeof BadgeCheck> = {
@@ -23,18 +24,15 @@ function FactList({ facts, decorative = false }: FactListProps) {
       aria-hidden={decorative || undefined}
       className={
         decorative
-          ? "flex shrink-0 items-center gap-10 pr-10 motion-reduce:hidden"
-          : "flex shrink-0 items-center gap-10 pr-10 motion-reduce:w-full motion-reduce:flex-wrap motion-reduce:justify-center motion-reduce:gap-y-3 motion-reduce:pr-0"
+          ? "flex shrink-0 items-center gap-10 px-5 py-5 motion-reduce:hidden"
+          : "flex shrink-0 items-center gap-10 px-5 py-5 motion-reduce:w-full motion-reduce:flex-wrap motion-reduce:justify-center motion-reduce:gap-y-3"
       }
     >
       {facts.map((fact) => {
         const Icon = ICONS[fact.icon];
         return (
-          <li
-            key={fact.text}
-            className="flex items-center gap-3 font-heading text-xl whitespace-nowrap italic sm:text-2xl"
-          >
-            <Icon className="size-4 shrink-0 text-gold" aria-hidden="true" />
+          <li key={fact.text} className="flex items-center gap-3 text-sm font-medium tracking-wide whitespace-nowrap">
+            <Icon className="size-4 shrink-0 text-gold-light" aria-hidden="true" />
             {fact.text}
           </li>
         );
@@ -45,15 +43,15 @@ function FactList({ facts, decorative = false }: FactListProps) {
 
 /**
  * Faixa de fatos reais abaixo do hero (registro, cidade, formas de atendimento, agenda).
- * Desliza devagar em CSS puro e pausa no hover. Com movimento reduzido, fica parada e quebra em linhas.
+ * Desliza devagar (CSS puro; pausa no hover, no foco e pelo botão). Com movimento reduzido fica parada.
  */
 export function Marquee() {
   return (
-    <section aria-label="Resumo do atendimento" className="overflow-hidden bg-primary py-4 text-primary-foreground md:py-5">
-      <div className="flex w-max animate-marquee px-5 motion-reduce:w-full motion-reduce:animate-none hover:[animation-play-state:paused]">
+    <section aria-label="Resumo do atendimento" className="overflow-hidden bg-primary text-primary-foreground">
+      <FactsTrack>
         <FactList facts={FACTS} />
         <FactList facts={FACTS} decorative />
-      </div>
+      </FactsTrack>
     </section>
   );
 }

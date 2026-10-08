@@ -21,8 +21,8 @@ export default function NotFound() {
         height={383}
         className="h-20 w-auto"
       />
-      <p className="text-xs font-bold tracking-[0.28em] text-gold-ink uppercase">Erro 404</p>
-      <h1 className="text-5xl leading-[1.05] font-medium text-balance">
+      <p className="text-xs font-semibold tracking-[0.18em] text-gold-ink uppercase">Erro 404</p>
+      <h1 className="text-4xl leading-tight tracking-tight text-balance md:text-5xl">
         Essa página não existe.
       </h1>
       <p className="text-base leading-relaxed text-muted-foreground">

@@ -1,24 +1,24 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Montserrat } from "next/font/google";
+import { Inter, Manrope } from "next/font/google";
 
 import { CookieConsent } from "@/components/CookieConsent";
+import { MotionProvider } from "@/components/motion/MotionProvider";
+import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { TrackingScripts } from "@/components/TrackingScripts";
 import { BRAND, CRN } from "@/data/content";
 import { INSTAGRAM_URL, SITE_URL, WHATSAPP_NUMBER } from "@/lib/env";
 import "./globals.css";
 
-// Cormorant Garamond: a serifa do wordmark da logo. Montserrat: a sans de "NUTRICIONISTA" e do CRN na logo.
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+// Manrope: sans geométrica para títulos, sóbria e profissional. Inter: texto e rótulos.
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  style: ["normal", "italic"],
   display: "swap",
 });
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
@@ -82,12 +82,15 @@ const JSON_LD = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pt-BR" className={`${cormorant.variable} ${montserrat.variable} h-full`}>
+    <html lang="pt-BR" className={`${manrope.variable} ${inter.variable} h-full`}>
       <body className="flex min-h-full flex-col">
-        {/* Banner antes do conteúdo no DOM: teclado/leitor de tela chegam nele primeiro (visual é fixed) */}
-        <CookieConsent />
-        {children}
-        <FloatingWhatsApp />
+        <MotionProvider>
+          <ScrollProgress />
+          {/* Banner antes do conteúdo no DOM: teclado/leitor de tela chegam nele primeiro (visual é fixed) */}
+          <CookieConsent />
+          {children}
+          <FloatingWhatsApp />
+        </MotionProvider>
         <TrackingScripts />
         <script
           type="application/ld+json"

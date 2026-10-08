@@ -23,7 +23,7 @@ export function Header() {
             className="h-9 w-auto"
             priority
           />
-          <span className="text-[13px] font-normal tracking-[0.34em] whitespace-nowrap uppercase">
+          <span className="text-[13px] font-semibold tracking-[0.22em] whitespace-nowrap uppercase">
             {BRAND.name}
           </span>
         </a>

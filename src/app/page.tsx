@@ -10,7 +10,6 @@ import { Hero } from "@/components/sections/Hero";
 import { Marquee } from "@/components/sections/Marquee";
 import { PhysicalAssessment } from "@/components/sections/PhysicalAssessment";
 import { Process } from "@/components/sections/Process";
-import { Statement } from "@/components/sections/Statement";
 import { Services } from "@/components/sections/Services";
 
 export default function Home() {
@@ -20,7 +19,6 @@ export default function Home() {
       <main>
         <Hero />
         <Marquee />
-        <Statement />
         <Services />
         <ForWhom />
         <PhysicalAssessment />

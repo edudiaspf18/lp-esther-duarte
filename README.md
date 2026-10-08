@@ -8,7 +8,8 @@ Landing page de conversão da nutricionista **Esther Duarte** (Anápolis-GO, CRN
 
 - [Next.js 16](https://nextjs.org) (App Router) + React 19 + TypeScript
 - Tailwind CSS v4 + shadcn/ui (base-nova) + lucide-react
-- Fontes `next/font`: Cormorant Garamond (títulos, a serifa da logo) e Montserrat (texto e rótulos)
+- Fontes `next/font`: Manrope (títulos) e Inter (texto e rótulos)
+- `motion` (animações: aparecer ao rolar, linha do tempo, halo do retrato, selo giratório, cartões que viram)
 - Deploy self-hosted: VPS Ubuntu + PM2 + Nginx + Certbot + GitHub Actions
 
 ## Rodando localmente
@@ -44,8 +45,9 @@ Outros scripts:
 src/
 ├── app/                 layout, página, privacidade, sitemap, robots, ícones
 ├── components/
-│   ├── sections/        Header, Hero, Marquee, Statement, Services, ForWhom, PhysicalAssessment, Process, About, Credentials, FAQ, InstagramStrip, FinalCta, Footer
-│   ├── ui/              shadcn (button, accordion, sheet) + ServiceRow + Botanical (SVG)
+│   ├── sections/        Header, Hero, Marquee, Services, ForWhom, PhysicalAssessment, Process, About, Credentials, FAQ, InstagramStrip, FinalCta, Footer
+│   ├── motion/          Reveal, RevealedTitle, PortraitFrame, AnimatedJourney, ServiceCard/ServicesCarousel, FactsTrack, ScrollProgress
+│   ├── ui/              shadcn (button, accordion, sheet) + RotatingBadge + ServiceIcon
 │   ├── WhatsAppButton   link wa.me com mensagem dinâmica, UTM e tracking
 │   ├── FloatingWhatsApp botão fixo
 │   ├── CookieConsent    banner LGPD
@@ -60,14 +62,14 @@ src/
 - `public/images/logo.svg`: logo completa vetorizada (monograma ED + nome + CRN + slogan).
 - `public/images/monograma.svg`: só o monograma ED. Os PNGs (`monograma.png`, `monograma-claro.png`, ícones, OG) são rasterizados a partir dele.
 - Original (mockup JPEG) em `logo/`; fotos originais em `imagens/`. Ambos ficam fora do repositório.
-- Paleta em `src/app/globals.css`: verde-floresta (`--primary`) + marfim (`--background`) + dourado (`--gold*`), tirada da logo.
+- Paleta em `src/app/globals.css`: verde-floresta (`--primary`) + marfim (`--background`) + dourado (`--gold*`), tirada da logo. Cantos arredondados (`--radius: 1rem`), cartões brancos com borda de 1px.
 
 ## Como funciona
 
 - **WhatsApp com mensagem pronta:** cada botão monta `https://wa.me/<número>?text=...`. Os cards de serviço levam o nome do serviço na mensagem.
 - **UTM:** `?utm_source=instagram&utm_medium=stories&utm_campaign=agenda_aberta` é lido no cliente. A origem entra na mensagem ("Vim pelo seu Instagram!") e nos eventos de lead.
 - **LGPD:** GA4 e Meta Pixel só carregam depois do "Aceitar" no banner. A escolha fica no `localStorage`. Sem consentimento, o evento de clique não dispara.
-- **Animações:** só CSS (`@utility` no `globals.css`): entrada no hero, revelação ao rolar com `animation-timeline: view()` (sem suporte = sem animação, conteúdo visível), marquee e traço desenhado. `prefers-reduced-motion` desliga tudo.
+- **Animações:** título palavra por palavra e faixa de fatos em CSS puro; `motion` (LazyMotion) para aparecer ao rolar, linha do tempo que se desenha, halo do retrato, selo giratório e cartões de serviço que viram; carrossel com inclinação via `animation-timeline: view(inline)`. `prefers-reduced-motion` desliga tudo.
 - **SEO:** metadata + Open Graph, JSON-LD (`MedicalBusiness`, área de atendimento Brasil), `sitemap.xml`, `robots.txt`, HTML semântico com um único `h1`.
 
 ## Conteúdo pendente antes de publicar

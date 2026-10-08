@@ -1,7 +1,12 @@
+export type ServiceIcon = "video" | "scale" | "salad" | "dumbbell" | "ruler" | "heart" | "clock";
+
 export interface Service {
   id: string;
+  icon: ServiceIcon;
   title: string;
   description: string;
+  /** Verso do cartão: para quem o serviço faz sentido */
+  forWhom: string;
   /** Mensagem base do WhatsApp (UTM é acrescentado em runtime) */
   message: string;
 }
@@ -58,59 +63,88 @@ export const HERO = {
     },
   ],
   /** Texto do selo giratório sobre a foto */
-  badge: "Online · Todo o Brasil · Presencial · Anápolis · ",
+  badge: "Online · Todo o Brasil · Presencial · Anápolis-GO · ",
 } as const;
 
 export const SERVICES: readonly Service[] = [
   {
     id: "consulta-online",
+    icon: "video",
     title: "Consulta Online",
     description:
       "Atendimento por videochamada, no seu horário e sem deslocamento. Anamnese completa, orientação e plano alimentar entregue no seu celular.",
+    forWhom:
+      "Para quem quer começar o acompanhamento sem deslocamento, com horário flexível e plano entregue de forma digital.",
     message:
       "Olá Esther, vim pelo seu site e gostaria de agendar uma Consulta Online.",
   },
   {
     id: "emagrecimento",
+    icon: "scale",
     title: "Emagrecimento",
     description:
       "Perda de peso com estratégia e constância, sem cortar o que você gosta de comer e sem fórmulas prontas.",
+    forWhom:
+      "Para quem já tentou dietas restritivas e quer perder peso com constância, sem culpa e sem efeito sanfona.",
     message:
       "Olá Esther, vim pelo seu site e gostaria de agendar uma consulta online com foco em Emagrecimento.",
   },
   {
     id: "reeducacao-alimentar",
+    icon: "salad",
     title: "Reeducação Alimentar",
     description:
       "Escolhas mais conscientes no dia a dia para construir uma relação leve e duradoura com a comida.",
+    forWhom:
+      "Para quem quer entender o que come, fazer escolhas melhores e sair da lógica do “começo na segunda”.",
     message:
       "Olá Esther, vim pelo seu site e gostaria de agendar uma consulta online com foco em Reeducação Alimentar.",
   },
   {
     id: "hipertrofia",
+    icon: "dumbbell",
     title: "Hipertrofia",
     description:
       "Alimentação alinhada ao seu treino para ganho de massa muscular, com ajustes conforme a sua evolução.",
+    forWhom:
+      "Para quem treina e quer que a alimentação acompanhe o esforço: energia, recuperação e ganho de massa.",
     message:
       "Olá Esther, vim pelo seu site e gostaria de agendar uma consulta online com foco em Hipertrofia.",
   },
   {
     id: "avaliacao-fisica",
+    icon: "ruler",
     title: "Avaliação Física Presencial",
     description:
       "Medidas e composição corporal feitas pessoalmente, em Anápolis-GO, com horário agendado, para acompanhar a sua evolução com precisão.",
+    forWhom:
+      "Para quem está em Anápolis-GO e quer medir a composição corporal de perto, com reavaliações comparáveis.",
     message:
       "Olá Esther, vim pelo seu site e gostaria de agendar uma Avaliação Física presencial.",
   },
   {
     id: "saude-bem-estar",
+    icon: "heart",
     title: "Saúde e Bem-estar",
     description:
       "Mais energia, melhor digestão e correção de deficiências nutricionais por meio de uma alimentação equilibrada.",
+    forWhom:
+      "Para quem busca mais energia, digestão melhor, exames em dia e uma relação em paz com a comida.",
     message:
       "Olá Esther, vim pelo seu site e gostaria de agendar uma consulta online com foco em Saúde e Bem-estar.",
   },
 ];
+
+export const SERVICES_SECTION = {
+  eyebrow: "Especialidades",
+  title: "Cuidado nutricional para cada objetivo",
+  intro:
+    "Toque em um cartão para ver para quem cada atendimento faz sentido. Consultas online para todo o Brasil e avaliação física presencial quando fizer sentido.",
+  more: "Ver mais",
+  back: "Voltar",
+  forWhomTitle: "Para quem faz sentido",
+  cta: "Agendar pelo WhatsApp",
+} as const;
 
 export type FactIcon = "registro" | "local" | "online" | "presencial" | "agenda" | "whatsapp";
 
@@ -138,6 +172,7 @@ export const STATEMENT = {
 
 export interface Profile {
   id: string;
+  icon: ServiceIcon;
   title: string;
   description: string;
 }
@@ -151,24 +186,28 @@ export const FOR_WHOM = {
   profiles: [
     {
       id: "atletas",
+      icon: "dumbbell",
       title: "Treina ou compete",
       description:
         "Atletas e praticantes de atividade física que querem alimentação alinhada ao treino, à recuperação e à competição.",
     },
     {
       id: "emagrecimento",
+      icon: "scale",
       title: "Quer emagrecer com saúde",
       description:
         "Perda de peso com estratégia e constância, sem dieta da moda e sem abrir mão do que você gosta de comer.",
     },
     {
       id: "rotina",
+      icon: "clock",
       title: "Tem a rotina corrida",
       description:
         "Precisa de praticidade: consulta online no seu horário, plano no celular e orientação que cabe no dia a dia.",
     },
     {
       id: "saude",
+      icon: "heart",
       title: "Busca mais saúde e energia",
       description:
         "Exames alterados, digestão, disposição ou simplesmente uma relação melhor com a comida.",

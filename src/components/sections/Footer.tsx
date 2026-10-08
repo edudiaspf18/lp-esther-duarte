@@ -12,7 +12,7 @@ const LINK_CLASSES =
   "inline-flex min-h-11 items-center gap-2 transition-all duration-200 hover:text-gold-light focus-visible:ring-2 focus-visible:ring-ring";
 
 const HEADING_CLASSES =
-  "font-sans text-xs font-medium tracking-[0.32em] text-gold-light uppercase";
+  "text-xs font-medium tracking-[0.18em] text-gold-light uppercase";
 
 const ROW_CLASSES =
   "group flex min-h-14 items-center justify-between gap-3 py-4 transition-all duration-200 hover:text-gold-light focus-visible:ring-2 focus-visible:ring-ring";
@@ -35,9 +35,9 @@ export function Footer() {
             height={383}
             className="h-16 w-auto"
           />
-          <p className="mt-8 font-heading text-2xl tracking-[0.28em] uppercase">{BRAND.name}</p>
-          <p className="mt-1 text-xs tracking-[0.4em] text-gold-light uppercase">{BRAND.role}</p>
-          <p className="mt-8 max-w-xs font-heading text-xl leading-snug text-primary-foreground/80 italic">
+          <p className="mt-8 font-heading text-xl font-semibold tracking-[0.2em] uppercase">{BRAND.name}</p>
+          <p className="mt-1 text-xs tracking-[0.3em] text-gold-light uppercase">{BRAND.role}</p>
+          <p className="mt-8 max-w-xs text-lg leading-snug font-medium text-primary-foreground/80">
             {BRAND.slogan}
           </p>
         </div>

@@ -36,9 +36,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-montserrat);
-  --font-heading: var(--font-cormorant);
-  --font-serif: var(--font-cormorant);
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-manrope);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -62,107 +61,76 @@
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
 
-  --animate-marquee: marquee 48s linear infinite;
-  --animate-spin-slow: spin-slow 28s linear infinite;
-  --animate-draw: draw 2.4s cubic-bezier(0.4, 0, 0.2, 1) both;
-  --animate-sway: sway 9s ease-in-out infinite;
-
+  /* Accordion do FAQ com 250 ms (velocidade média da marca). */
+  --animate-accordion-down: accordion-down 0.25s ease-out;
+  --animate-accordion-up: accordion-up 0.25s ease-out;
+  /* Faixa de fatos: a lista (duplicada) desliza devagar; pausa no hover. */
+  --animate-marquee: marquee 40s linear infinite;
   @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
     to {
       transform: translateX(-50%);
     }
   }
-  @keyframes spin-slow {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  @keyframes draw {
-    from {
-      stroke-dashoffset: 1;
-    }
-    to {
-      stroke-dashoffset: 0;
-    }
-  }
-  @keyframes sway {
-    0%,
-    100% {
-      transform: rotate(-1.5deg);
-    }
-    50% {
-      transform: rotate(1.5deg);
-    }
-  }
-  @keyframes rise {
+  /* Reveal palavra por palavra (Hero): só opacidade e 0,4em de subida, 0,5 s, sem quique. */
+  --animate-revelar-palavra: revelar-palavra 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  @keyframes revelar-palavra {
     from {
       opacity: 0;
-      transform: translateY(28px);
+      transform: translateY(0.4em);
     }
     to {
       opacity: 1;
       transform: none;
     }
   }
-  @keyframes slide {
+  /* Entrada do hero (subtítulo, botões, cartões), escalonada por --rise-delay. */
+  --animate-rise: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  @keyframes rise {
     from {
-      transform: translateY(24px);
+      opacity: 0;
+      transform: translateY(14px);
     }
     to {
+      opacity: 1;
       transform: none;
     }
   }
-  @keyframes unveil {
-    from {
-      clip-path: inset(0 0 100% 0);
+  /* Cartão do carrossel: inclina ao entrar e sair do centro (ligado à rolagem horizontal). */
+  @keyframes tilt-card {
+    0% {
+      transform: rotateY(22deg) scale(0.9);
+      opacity: 0.55;
     }
-    to {
-      clip-path: inset(0 0 0 0);
+    50% {
+      transform: none;
+      opacity: 1;
     }
-  }
-  @keyframes scale-settle {
-    from {
-      transform: scale(1.12);
-    }
-    to {
-      transform: scale(1);
+    100% {
+      transform: rotateY(-22deg) scale(0.9);
+      opacity: 0.55;
     }
   }
 }
 
 /* Entrada ao carregar (hero): --rise-delay escalona os elementos */
 @utility rise-in {
-  animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) var(--rise-delay, 0ms) both;
+  animation: var(--animate-rise);
+  animation-delay: var(--rise-delay, 0ms);
 }
 
-/* Título do hero (LCP): só desliza, sem fade, para pintar já na carga */
-@utility slide-in {
-  animation: slide 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-
-/* Foto do hero: máscara que abre de cima para baixo + leve zoom out */
-@utility unveil {
-  animation: unveil 0.9s cubic-bezier(0.7, 0, 0.2, 1) both;
-}
-@utility settle {
-  animation: scale-settle 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-
-/* Revelação ao rolar (scroll-driven). Sem suporte do navegador: sem animação, conteúdo já visível. */
-@utility reveal {
+/* Inclinação 3D dos cartões do carrossel ligada à rolagem horizontal (scroll-driven animation).
+   Navegador sem suporte mostra os cartões planos; `motion-reduce:animate-none` desliga. */
+@utility tilt-card {
   @supports (animation-timeline: view()) {
-    animation: rise linear both;
-    animation-timeline: view();
-    animation-range: entry 4% cover 26%;
+    animation: tilt-card linear both;
+    animation-timeline: view(inline);
   }
-}
-
-/* Traço desenhado (ilustrações botânicas) */
-@utility draw-line {
-  stroke-dasharray: 1;
-  animation: var(--animate-draw);
-  animation-delay: var(--draw-delay, 400ms);
 }
 
 /* Paleta da marca (logo): verde-floresta profundo + dourado sobre marfim. Dourado = destaque único. */
@@ -182,13 +150,13 @@
   --accent: #f1ede4;
   --accent-foreground: #1b2e23;
   --destructive: #a8332a;
-  --border: rgb(27 46 35 / 0.14);
+  --border: rgb(27 46 35 / 0.12);
   --input: rgb(27 46 35 / 0.2);
   --ring: #b9975a;
   --gold: #b9975a;
   --gold-ink: #7f6531;
   --gold-light: #dcc48f;
-  --radius: 0.5rem;
+  --radius: 1rem;
 }
 
 @layer base {
@@ -196,16 +164,16 @@
     @apply border-border outline-ring/50;
   }
   html {
-    @apply scroll-smooth font-sans;
+    @apply scroll-smooth font-sans motion-reduce:scroll-auto;
   }
   body {
-    @apply bg-background text-foreground antialiased;
+    /* overflow-x-clip: nada decorativo (halo, selo, faixa) pode criar rolagem horizontal. */
+    @apply overflow-x-clip bg-background text-foreground antialiased;
   }
-  /* Cormorant tem olho pequeno: títulos levam peso 500 e tracking normal para manter presença */
   h1,
   h2,
   h3 {
-    @apply font-heading font-medium tracking-normal;
+    @apply font-heading font-semibold tracking-tight;
   }
   section[id] {
     scroll-margin-top: 4.5rem;
