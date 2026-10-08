@@ -3,9 +3,9 @@
 import Script from "next/script";
 
 import { useConsent } from "@/lib/consent";
-import { GA_ID, META_PIXEL_ID } from "@/lib/env";
+import { GA_ID, GTM_ID, META_PIXEL_ID } from "@/lib/env";
 
-/** Carrega GA4 e Meta Pixel SOMENTE após consentimento (RF08). Sem ID = desligado. */
+/** Carrega GTM, GA4 e Meta Pixel SOMENTE após consentimento (LGPD). Sem ID = desligado. */
 export function TrackingScripts() {
   const consent = useConsent();
 
@@ -13,6 +13,11 @@ export function TrackingScripts() {
 
   return (
     <>
+      {GTM_ID && (
+        <Script id="gtm-init" strategy="afterInteractive">
+          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`}
+        </Script>
+      )}
       {GA_ID && (
         <>
           <Script

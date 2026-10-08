@@ -16,6 +16,15 @@ export interface UtmParams {
 export function trackWhatsAppClick(origin: string, utm: UtmParams): void {
   if (readConsent() !== "granted") return;
 
+  // GTM: evento no dataLayer para disparar tags do contêiner (GA4, Ads, Pixel).
+  window.dataLayer?.push({
+    event: "whatsapp_click",
+    origin_section: origin,
+    campaign_source: utm.source ?? "organico",
+    campaign_medium: utm.medium ?? "direto",
+    campaign_name: utm.campaign ?? "nenhuma",
+  });
+
   window.gtag?.("event", "generate_lead", {
     method: "WhatsApp",
     origin_section: origin,

@@ -16,7 +16,7 @@ export function MobileMenu() {
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger
         aria-label="Abrir menu"
-        className="inline-flex size-10 items-center justify-center rounded-full border border-border text-foreground transition-all duration-200 hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring md:hidden"
+        className="inline-flex size-10 items-center justify-center rounded-full border border-border text-foreground transition-all duration-200 hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring lg:hidden"
       >
         <Menu className="size-5" aria-hidden="true" />
       </SheetTrigger>

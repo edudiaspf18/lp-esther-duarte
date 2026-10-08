@@ -27,7 +27,7 @@ export function Footer() {
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="mx-auto grid max-w-6xl gap-16 px-5 py-20 md:grid-cols-12 md:gap-x-8 md:gap-y-0 md:px-8 md:py-28">
-        <div className="md:col-span-4">
+        <div className="md:col-span-3 lg:col-span-4">
           <Image
             src="/images/monograma-claro.png"
             alt={`Monograma ED de ${BRAND.name}`}
@@ -42,7 +42,7 @@ export function Footer() {
           </p>
         </div>
 
-        <div className="text-sm md:col-span-3 md:col-start-6">
+        <div className="text-sm md:col-span-4 md:col-start-5">
           <h2 className={HEADING_CLASSES}>Contato</h2>
           <ul className="mt-8 border-t border-primary-foreground/15">
             <li className="border-b border-primary-foreground/15">
@@ -77,7 +77,7 @@ export function Footer() {
           </ul>
         </div>
 
-        <div className="text-sm md:col-span-4 md:col-start-9">
+        <div className="text-sm md:col-span-3 md:col-start-10 lg:col-span-4 lg:col-start-9">
           <h2 className={HEADING_CLASSES}>Atendimento</h2>
           <ul className="mt-8 border-t border-primary-foreground/15">
             <li className="flex min-h-14 items-start gap-2 border-b border-primary-foreground/15 py-4">

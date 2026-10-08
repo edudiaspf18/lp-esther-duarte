@@ -16,7 +16,7 @@ const MODE_ICONS = { online: Video, presencial: MapPin } as const;
 export function Hero() {
   return (
     <section id="topo" aria-labelledby="titulo-hero" className="overflow-x-clip">
-      <div className="mx-auto grid max-w-6xl gap-12 px-5 pt-10 pb-16 md:grid-cols-[1.05fr_0.95fr] md:items-center md:gap-12 md:px-8 md:py-24 lg:gap-16">
+      <div className="mx-auto grid max-w-6xl gap-12 px-5 pt-10 pb-16 md:px-8 md:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-16 lg:py-24">
         <div>
           <p className="rise-in flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-medium tracking-[0.18em] text-gold-ink uppercase">
             <span>{HERO.eyebrow}</span>
@@ -72,7 +72,7 @@ export function Hero() {
           </dl>
         </div>
 
-        <div className="relative mx-auto w-full max-w-sm md:max-w-md">
+        <div className="relative mx-auto w-full max-w-sm md:max-w-md lg:mx-0 lg:justify-self-end">
           <PortraitFrame>
             <figure className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-gold/30 bg-primary">
               <Image

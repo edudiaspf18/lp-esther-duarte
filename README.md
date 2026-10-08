@@ -36,7 +36,10 @@ Outros scripts:
 | `NEXT_PUBLIC_SITE_URL` | URL pública (canonical, OG, sitemap) |
 | `NEXT_PUBLIC_WHATSAPP_NUMBER` | WhatsApp com DDI, só dígitos (ex.: `5562999999999`) |
 | `NEXT_PUBLIC_INSTAGRAM_URL` | Link do Instagram |
-| `NEXT_PUBLIC_GA_ID` | ID do GA4. Vazio = desligado |
+| `NEXT_PUBLIC_GOOGLE_BUSINESS_URL` | Link do perfil no Google Business (Maps). Entra no JSON-LD como `sameAs`. Vazio = fora |
+| `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Token do Google Search Console (`google-site-verification`). Vazio = sem a tag |
+| `NEXT_PUBLIC_GTM_ID` | ID do Google Tag Manager (`GTM-XXXXXXX`). Vazio = desligado |
+| `NEXT_PUBLIC_GA_ID` | ID do GA4 (carregado direto, sem GTM). Vazio = desligado |
 | `NEXT_PUBLIC_META_PIXEL_ID` | ID do Meta Pixel. Vazio = desligado |
 
 ## Estrutura
@@ -68,16 +71,18 @@ src/
 
 - **WhatsApp com mensagem pronta:** cada botão monta `https://wa.me/<número>?text=...`. Os cards de serviço levam o nome do serviço na mensagem.
 - **UTM:** `?utm_source=instagram&utm_medium=stories&utm_campaign=agenda_aberta` é lido no cliente. A origem entra na mensagem ("Vim pelo seu Instagram!") e nos eventos de lead.
-- **LGPD:** GA4 e Meta Pixel só carregam depois do "Aceitar" no banner. A escolha fica no `localStorage`. Sem consentimento, o evento de clique não dispara.
+- **LGPD:** GTM, GA4 e Meta Pixel só carregam depois do "Aceitar" no banner. A escolha fica no `localStorage`. Sem consentimento, o evento de clique não dispara.
+- **Lead:** cada clique no WhatsApp dispara `generate_lead` (GA4), `Lead` (Pixel) e `whatsapp_click` no `dataLayer` (para tags do GTM), com a seção de origem e as UTMs.
 - **Animações:** título palavra por palavra e faixa de fatos em CSS puro; `motion` (LazyMotion) para aparecer ao rolar, linha do tempo que se desenha, halo do retrato, selo giratório e cartões de serviço que viram; carrossel com inclinação via `animation-timeline: view(inline)`. `prefers-reduced-motion` desliga tudo.
-- **SEO:** metadata + Open Graph, JSON-LD (`MedicalBusiness`, área de atendimento Brasil), `sitemap.xml`, `robots.txt`, HTML semântico com um único `h1`.
+- **SEO:** metadata + Open Graph + keywords, JSON-LD `MedicalBusiness` (endereço Anápolis, área Brasil, `sameAs` Instagram e Google Business) e `FAQPage`, `sitemap.xml`, `robots.txt`, `manifest`, verificação do Search Console por env, HTML semântico com um único `h1`.
+- **Google Business Profile:** não é configurado no site; crie o perfil em business.google.com com o mesmo nome, telefone e site (NAP igual ao do rodapé) e cole o link do Maps em `NEXT_PUBLIC_GOOGLE_BUSINESS_URL`.
 
 ## Conteúdo pendente antes de publicar
 
 - Confirmar o domínio final (`NEXT_PUBLIC_SITE_URL` em `.env` e `src/lib/env.ts`).
 - Confirmar os textos da seção "Sobre" (`ABOUT` em `src/data/content.ts`) e o local da avaliação física presencial em Anápolis-GO.
 - Depoimentos reais autorizados em `TESTIMONIALS` (a seção fica oculta enquanto vazio).
-- IDs do GA4 e do Meta Pixel.
+- IDs do GTM, GA4 e Meta Pixel; link do Google Business e token do Search Console.
 
 ## Deploy (VPS)
 

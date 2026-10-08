@@ -38,7 +38,7 @@ export function PortraitFrame({ children }: { children: React.ReactNode }) {
       <m.div
         aria-hidden="true"
         style={{ x: smoothX, y }}
-        className="pointer-events-none absolute -inset-8 -z-10 rounded-[999px] bg-[radial-gradient(closest-side,rgb(185_151_90/0.30),rgb(185_151_90/0.08)_55%,transparent_75%)] motion-reduce:transform-none!"
+        className="pointer-events-none absolute -inset-4 -z-10 rounded-[999px] sm:-inset-8 bg-[radial-gradient(closest-side,rgb(185_151_90/0.30),rgb(185_151_90/0.08)_55%,transparent_75%)] motion-reduce:transform-none!"
       />
       {children}
     </div>

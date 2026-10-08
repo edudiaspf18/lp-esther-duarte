@@ -6,8 +6,14 @@ import { MotionProvider } from "@/components/motion/MotionProvider";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { TrackingScripts } from "@/components/TrackingScripts";
-import { BRAND, CRN } from "@/data/content";
-import { INSTAGRAM_URL, SITE_URL, WHATSAPP_NUMBER } from "@/lib/env";
+import { ATTENDANCE, BRAND, CRN, FAQ } from "@/data/content";
+import {
+  GOOGLE_BUSINESS_URL,
+  GOOGLE_SITE_VERIFICATION,
+  INSTAGRAM_URL,
+  SITE_URL,
+  WHATSAPP_NUMBER,
+} from "@/lib/env";
 import "./globals.css";
 
 // Manrope: sans geométrica para títulos, sóbria e profissional. Inter: texto e rótulos.
@@ -34,6 +40,17 @@ export const metadata: Metadata = {
   },
   description: DESCRIPTION,
   alternates: { canonical: "/" },
+  keywords: [
+    "nutricionista online",
+    "nutricionista Anápolis",
+    "nutricionista esportiva",
+    "emagrecimento",
+    "hipertrofia",
+    "reeducação alimentar",
+    "avaliação física Anápolis",
+  ],
+  ...(GOOGLE_SITE_VERIFICATION ? { verification: { google: GOOGLE_SITE_VERIFICATION } } : {}),
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } },
   openGraph: {
     title: "Esther Duarte - Nutricionista Online",
     description: DESCRIPTION,
@@ -64,7 +81,16 @@ const JSON_LD = {
   image: `${SITE_URL}/images/og-image-esther.jpg`,
   description: DESCRIPTION,
   telephone: `+${WHATSAPP_NUMBER}`,
-  sameAs: [INSTAGRAM_URL],
+  sameAs: [INSTAGRAM_URL, ...(GOOGLE_BUSINESS_URL ? [GOOGLE_BUSINESS_URL] : [])],
+  priceRange: "$$",
+  openingHours: "Mo-Fr",
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: `+${WHATSAPP_NUMBER}`,
+    contactType: "customer service",
+    availableLanguage: "Portuguese",
+    description: ATTENDANCE.hours,
+  },
   founder: {
     "@type": "Person",
     name: BRAND.name,
@@ -78,6 +104,16 @@ const JSON_LD = {
     { "@type": "MedicalTherapy", name: "Consulta nutricional online" },
     { "@type": "MedicalTherapy", name: "Avaliação física presencial" },
   ],
+};
+
+const FAQ_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: { "@type": "Answer", text: item.answer },
+  })),
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -96,6 +132,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(JSON_LD).replace(/</g, "\\u003c"),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(FAQ_JSON_LD).replace(/</g, "\\u003c"),
           }}
         />
       </body>

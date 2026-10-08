@@ -28,7 +28,7 @@ export function Header() {
           </span>
         </a>
 
-        <nav aria-label="Principal" className="hidden items-center gap-4 md:flex lg:gap-8">
+        <nav aria-label="Principal" className="hidden items-center gap-5 lg:flex xl:gap-8">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
@@ -45,7 +45,7 @@ export function Header() {
             className="inline-flex min-h-11 items-center gap-1.5 text-sm whitespace-nowrap text-muted-foreground transition-all duration-200 hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
           >
             <InstagramIcon className="size-4" />
-            <span className="sr-only lg:not-sr-only">Instagram</span>
+            <span className="sr-only xl:not-sr-only">Instagram</span>
           </a>
         </nav>
 
