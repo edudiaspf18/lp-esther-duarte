@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * Linha do tempo vertical: a linha dourada se desenha conforme a rolagem e cada passo
- * acende quando entra na tela; o indicador "Passo X de N" acompanha (decorativo).
+ * acende quando entra na tela.
  * Movimento reduzido: linha inteira e passos todos acesos por CSS.
  */
 export function AnimatedJourney({ steps }: { steps: readonly ProcessStep[] }) {
@@ -22,10 +22,6 @@ export function AnimatedJourney({ steps }: { steps: readonly ProcessStep[] }) {
 
   return (
     <div className="relative">
-      <p aria-hidden="true" className="mb-8 text-sm font-medium tabular-nums tracking-wide text-gold-ink">
-        Passo {reached + 1} de {steps.length}
-      </p>
-
       <ol ref={root} className="relative space-y-12 pl-14">
         <div aria-hidden="true" className="absolute top-4 bottom-4 left-[1.15rem] w-px bg-border" />
         <m.div
