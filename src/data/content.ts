@@ -30,7 +30,7 @@ export const WHATSAPP_GENERIC_MESSAGE =
 
 export const NAV_LINKS = [
   { href: "#servicos", label: "Serviços" },
-  { href: "#planos", label: "Acompanhamento" },
+  { href: "#para-quem", label: "Para quem é" },
   { href: "#avaliacao-fisica", label: "Avaliação física" },
   { href: "#sobre", label: "Sobre" },
   { href: "#duvidas", label: "Dúvidas" },
@@ -136,69 +136,56 @@ export const STATEMENT = {
   after: "para ter energia, saúde e uma relação em paz com a comida.",
 } as const;
 
-export interface Plan {
+export interface Profile {
   id: string;
-  name: string;
-  tagline: string;
+  title: string;
   description: string;
-  details: readonly string[];
-  /** Mensagem base do WhatsApp (UTM é acrescentado em runtime) */
-  message: string;
 }
 
-/** Conteúdo informativo, sem preço, desconto, promoção ou chamada de venda (CFN). */
-export const PLANS_SECTION = {
-  eyebrow: "Formas de acompanhamento",
-  title: "Como o acompanhamento online pode ser feito",
+/** Para quem é o acompanhamento + o que o paciente recebe. Sem preço, sem promessa de resultado (CFN). */
+export const FOR_WHOM = {
+  eyebrow: "Para quem é",
+  title: "O acompanhamento é para você que",
   intro:
-    "Todas as consultas são online, por videochamada, e o número de encontros depende do seu objetivo e da sua rotina. Estas são as formas de acompanhamento que a Esther oferece.",
-  note: "O formato indicado para cada pessoa é definido pela nutricionista na primeira conversa. Informações sobre as condições de atendimento são passadas pelo WhatsApp.",
-  cta: "Tirar dúvidas pelo WhatsApp",
-  includedTitle: "Plano alimentar em todas as formas de acompanhamento",
-  included:
-    "Plano alimentar personalizado, entregue de forma digital: alimentação planejada para a sua fase de vida, com as suas preferências, substituições e ideias de receitas.",
+    "Cada plano nasce da sua rotina, do seu histórico e do seu objetivo. Estes são os perfis que a Esther mais atende, online, de qualquer lugar do Brasil.",
+  profiles: [
+    {
+      id: "atletas",
+      title: "Treina ou compete",
+      description:
+        "Atletas e praticantes de atividade física que querem alimentação alinhada ao treino, à recuperação e à competição.",
+    },
+    {
+      id: "emagrecimento",
+      title: "Quer emagrecer com saúde",
+      description:
+        "Perda de peso com estratégia e constância, sem dieta da moda e sem abrir mão do que você gosta de comer.",
+    },
+    {
+      id: "rotina",
+      title: "Tem a rotina corrida",
+      description:
+        "Precisa de praticidade: consulta online no seu horário, plano no celular e orientação que cabe no dia a dia.",
+    },
+    {
+      id: "saude",
+      title: "Busca mais saúde e energia",
+      description:
+        "Exames alterados, digestão, disposição ou simplesmente uma relação melhor com a comida.",
+    },
+  ],
+  deliverablesTitle: "O que você recebe",
+  deliverables: [
+    "Anamnese completa e avaliação do seu histórico",
+    "Plano alimentar personalizado, no seu celular",
+    "Lista de substituições e ideias de receitas",
+    "Orientações para treino, trabalho e refeições fora de casa",
+    "Retornos online para ajustes conforme a sua evolução",
+    "Avaliação física presencial em Anápolis-GO, quando fizer sentido",
+  ],
+  cta: "Agendar Consulta Online",
+  note: "O formato e a frequência do acompanhamento são definidos pela nutricionista na primeira conversa. Condições de atendimento são informadas pelo WhatsApp.",
 } as const;
-
-export const PLANS: readonly Plan[] = [
-  {
-    id: "consulta-unica",
-    name: "Consulta única",
-    tagline: "Avaliação inicial",
-    description:
-      "Uma consulta online para conhecer o seu histórico, a sua rotina e os seus objetivos, com plano alimentar personalizado.",
-    details: ["1 consulta online", "Anamnese e avaliação", "Plano alimentar personalizado"],
-    message:
-      "Olá Esther, vim pelo seu site e gostaria de tirar dúvidas sobre a Consulta Única.",
-  },
-  {
-    id: "consulta-retorno",
-    name: "Consulta e retorno",
-    tagline: "Avaliação e reavaliação",
-    description:
-      "A consulta inicial com plano alimentar personalizado, seguida de um retorno online para ajustar o plano e avaliar a sua evolução.",
-    details: [
-      "1 consulta e 1 retorno, online",
-      "Plano alimentar personalizado",
-      "No retorno: ajustes do plano e avaliação da evolução",
-    ],
-    message:
-      "Olá Esther, vim pelo seu site e gostaria de tirar dúvidas sobre Consulta e Retorno.",
-  },
-  {
-    id: "acompanhamento-trimestral",
-    name: "Acompanhamento trimestral",
-    tagline: "Acompanhamento contínuo",
-    description:
-      "Encontros online ao longo de três meses, com plano alimentar personalizado e acompanhamento próximo e frequente.",
-    details: [
-      "Consultas online ao longo de 3 meses",
-      "Plano alimentar personalizado",
-      "Nos retornos: ajustes do plano e avaliação da evolução",
-    ],
-    message:
-      "Olá Esther, vim pelo seu site e gostaria de tirar dúvidas sobre o Acompanhamento Trimestral.",
-  },
-];
 
 export const PHYSICAL_ASSESSMENT = {
   eyebrow: "Avaliação física presencial",

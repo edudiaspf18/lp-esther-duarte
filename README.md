@@ -44,13 +44,13 @@ Outros scripts:
 src/
 ├── app/                 layout, página, privacidade, sitemap, robots, ícones
 ├── components/
-│   ├── sections/        Header, Hero, Marquee, Statement, Services, Plans, PhysicalAssessment, Process, About, Credentials, FAQ, InstagramStrip, FinalCta, Footer
+│   ├── sections/        Header, Hero, Marquee, Statement, Services, ForWhom, PhysicalAssessment, Process, About, Credentials, FAQ, InstagramStrip, FinalCta, Footer
 │   ├── ui/              shadcn (button, accordion, sheet) + ServiceRow + Botanical (SVG)
 │   ├── WhatsAppButton   link wa.me com mensagem dinâmica, UTM e tracking
 │   ├── FloatingWhatsApp botão fixo
 │   ├── CookieConsent    banner LGPD
 │   └── TrackingScripts  GA4 + Meta Pixel (só após aceite)
-├── data/content.ts      marca, textos, serviços, planos, FAQ, formas de atendimento
+├── data/content.ts      marca, textos, serviços, perfis, FAQ, formas de atendimento
 ├── lib/                 env, utils (WhatsApp), consent, tracking
 └── types/global.d.ts    tipos de window.gtag / window.fbq
 ```
