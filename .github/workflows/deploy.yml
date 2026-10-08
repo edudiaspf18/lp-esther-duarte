@@ -1,0 +1,42 @@
+name: CI e Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  qualidade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      # LayoutProps/PageProps são gerados pelo Next; sem typegen o tsc falha em checkout limpo
+      - run: npx next typegen && npx tsc --noEmit
+      - run: npm run build
+
+  deploy:
+    needs: qualidade
+    # Só deploya quando a variável de repositório DEPLOY_ENABLED=true (após VPS e secrets prontos)
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push' && vars.DEPLOY_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT || 22 }}
+          script_stop: true
+          script: |
+            cd /var/www/landing-esther
+            git pull --ff-only origin main
+            npm ci
+            npm run build
+            pm2 reload landing-esther
