@@ -4,6 +4,24 @@ Landing page de conversão da nutricionista **Esther Duarte** (Anápolis-GO, CRN
 
 > Slogan (H1 e logo): **"Transformando hábitos, conquistando resultados!"**
 
+## Prévia
+
+![Hero](docs/preview/hero.png)
+
+| Especialidades (cartões que viram) | Para quem é |
+|---|---|
+| ![Especialidades](docs/preview/servicos.png) | ![Para quem é](docs/preview/para-quem.png) |
+
+| Avaliação física presencial | Como é a consulta online |
+|---|---|
+| ![Avaliação física](docs/preview/avaliacao-fisica.png) | ![Consulta](docs/preview/consulta.png) |
+
+| Sobre | Dúvidas frequentes |
+|---|---|
+| ![Sobre](docs/preview/sobre.png) | ![Dúvidas](docs/preview/duvidas.png) |
+
+<p align="center"><img src="docs/preview/mobile.png" alt="Versão mobile: hero e especialidades" width="640"></p>
+
 ## Stack
 
 - [Next.js 16](https://nextjs.org) (App Router) + React 19 + TypeScript
